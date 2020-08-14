@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 )
 
 var input = flag.String("input", "../input.txt", "Input data file path.")
@@ -15,8 +16,7 @@ func main() {
 
 	f, err := ioutil.ReadFile(*input)
 	if err != nil {
-		fmt.Printf("error read input data file: %v\n", err)
-		return
+		log.Fatalf("error read input data file: %v\n", err)
 	}
 	scanner := bufio.NewScanner(bytes.NewBuffer(f))
 
@@ -28,8 +28,7 @@ func main() {
 	}
 
 	if err := scanner.Err(); err != nil {
-		fmt.Printf("error scan input data file: %v\n", err)
-		return
+		log.Fatalf("error scan input data file: %v\n", err)
 	}
 
 	for _, line := range lines {
